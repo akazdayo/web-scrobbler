@@ -80,7 +80,8 @@ export abstract class BaseSong {
 	 * @returns Song artist
 	 */
 	getArtist(): string | null | undefined {
-		return this.processed.artist || this.parsed.artist;
+		const pattern = /^[^、]*/;
+		return (pattern.exec(this.processed.artist as string) || pattern.exec(this.parsed.artist as string))?.[0];
 	}
 
 	/**
